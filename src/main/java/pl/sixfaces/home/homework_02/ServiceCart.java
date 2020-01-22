@@ -1,12 +1,9 @@
 package pl.sixfaces.home.homework_02;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
+
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -15,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-//@AllArgsConstructor
 @NoArgsConstructor
 @Service
 public class ServiceCart {
