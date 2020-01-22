@@ -16,8 +16,6 @@ import java.util.List;
 @Service
 public class ServiceCart {
 
-
-
     List<Cart> cartList;
     protected int priceAll;
     private int PriceMin = 50;
@@ -50,9 +48,7 @@ public class ServiceCart {
         }
 
 
-
         System.out.println("all price is without vat: " + priceAll + "$");
-
 
 
     }
