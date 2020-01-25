@@ -4,6 +4,8 @@ package pl.sixfaces.home.homework_02;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @Service
 public class ServiceCart {
+
+    Logger logger = LoggerFactory.getLogger(ServiceCart.class);
 
     List<Cart> cartList;
     protected int priceAll;
