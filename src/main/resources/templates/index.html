@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+<div class="container">
+
+    <p class="h4 mb-3 pt-5">Cars List</p>
+
+
+    <nav class="navbar navbar-light bg-white">
+        <a class="navbar-brand"></a>
+        <form th:action="@{/carSearch}" th:object="${searchCar}" class="form-inline" method="get">
+            <input th:field="*{color}" class="form-control mr-sm-2" type="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search...by Color</button>
+        </form>
+    </nav>
+
+
+    <table class="table table-striped  ">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Mark</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Update/Delete</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="cars_temp : ${cars}">
+            <td th:text="${cars_temp.getId()}"></td>
+            <td th:text="${cars_temp.getMark()}"></td>
+            <td th:text="${cars_temp.getModel()}"></td>
+            <td th:text="${cars_temp.getColor()}"></td>
+            <td>
+                <a class="btn btn-primary " th:href="@{update/form/(Id=${cars_temp.getId()})}">Update</a>
+                <a class="btn btn-danger" th:href="@{delete/(Id=${cars_temp.getId()})}">Remove</a>
+            </td>
+
+        </tbody>
+    </table>
+
+
+    <h4>Add new car</h4>
+
+    <form th:action="@{/add}" th:object="${newCar}" method="post">
+        <div class="form-row">
+
+            <div class="form-group col-md-1">
+                <label>ID:</label>
+                <input type="text" name="subject" th:field="*{id}" class="form-control" placeholder=" input id">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Mark:</label>
+                <input type="text" th:field="*{mark}" class="form-control" placeholder=" input mark">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Model:</label>
+                <input type="text" name="subject" th:field="*{model}" class="form-control"
+                       placeholder=" input model ">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Color:</label>
+                <input type="text" th:field="*{color}" class="form-control" placeholder="  input color">
+            </div>
+            <div class="form-group col-md-2 mt-4 pt-2 ">
+                <input type="submit" value="Add new car" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+</body>
+</html>
