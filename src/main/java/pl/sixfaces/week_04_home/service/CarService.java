@@ -1,14 +1,14 @@
-package pl.sixfaces.week_04_home;
+package pl.sixfaces.week_04_home.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import pl.sixfaces.week_04_home.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 
 
 @Service
@@ -21,7 +21,7 @@ public class CarService {
 
     public CarService() {
         logger.info("Start application ...");
-        System.out.println("ssss");
+
         carList = new ArrayList<>();
         carList.add(new Car(1, "Ford", "C-max", "red"));
         carList.add(new Car(2, "Honda", "Accord", "black"));
@@ -34,9 +34,7 @@ public class CarService {
 
 
     public List<Car> getCar() {
-
         return carList;
-
     }
 
 
@@ -51,37 +49,29 @@ public class CarService {
 
 
     private Optional<Car> findCarByID(int Id) {
-
         //return carList != null ? carList.stream().filter(c->c.getId() == Id).findFirst() : Optional.empty();
         if (carList != null)
             return carList.stream().filter(c -> c.getId() == Id).findFirst();
         else
             return Optional.empty();
-
-
     }
 
 
     public Car getCarById(int Id) {
         Optional<Car> car = findCarByID(Id);
         return car.isPresent() != false ? car.get() : car.orElse(null);
-
     }
 
 
     public List<Car> getCarByColo(String color) {
-
         // Predicate  use
-
        /* Predicate<Car> fColor = car -> car.getColor().equalsIgnoreCase(color);
-
         List<Car> listCars = new ArrayList<>();
         listCars = carList.stream()
                 .filter(fColor)
                 .collect(Collectors.toList());*/
 
         //map()  use
-
         List<Car> result = carList.stream().filter(c -> c.getColor().equalsIgnoreCase(color))
                 .map(temp -> {
                     Car car = new Car();

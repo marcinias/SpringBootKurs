@@ -1,9 +1,11 @@
-package pl.sixfaces.week_04_home;
+package pl.sixfaces.week_04_home.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import pl.sixfaces.week_04_home.model.Car;
+import pl.sixfaces.week_04_home.service.CarService;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +14,7 @@ import java.util.Optional;
 @Controller
 public class CarApi {
 
-    CarService carService;
+    private CarService carService;
 
     @Autowired
     public CarApi(CarService carService) {
@@ -28,19 +30,17 @@ public class CarApi {
         model.addAttribute("newCar", new Car());
         model.addAttribute("searchCar", new Car());
 
-
         return "index";
     }
-
 
     @PostMapping("/add")
     public String addCar(Car car) {
 
         System.out.println("/add");
         carService.carList.add(car);
+
         return "redirect:/";
     }
-
 
     @GetMapping("/delete")
     private String removeCar(@RequestParam("Id") int Id) {
@@ -48,9 +48,9 @@ public class CarApi {
         Optional<Car> first = carService.carList.stream().filter(car -> car.getId() == Id).findFirst();
         if (first.isPresent())
             carService.carList.remove(first.get());
+
         return "redirect:/";
     }
-
 
     @GetMapping("/update/form")
     public String updateCarForm(@RequestParam("Id") int Id, ModelMap model) {
@@ -59,6 +59,7 @@ public class CarApi {
         Optional<Car> first = carService.carList.stream().filter(car -> car.getId() == Id).findFirst();
         model.addAttribute("updateCar", first.get());
         Car carUpdate = first.get();
+
         return "update";
 
     }
@@ -66,7 +67,7 @@ public class CarApi {
     @PostMapping("/update/save")
     public String updateCar(Car carUpdate) {
         System.out.println("/update/save");
-        Optional<Car> first = carService.carList.stream().filter(car -> car.getId() == carUpdate.Id).findFirst();
+        Optional<Car> first = carService.carList.stream().filter(car -> car.getId() == carUpdate.getId()).findFirst();
 
         if (first.isPresent()) {
             carService.carList.remove(first.get());
@@ -79,11 +80,11 @@ public class CarApi {
     @GetMapping("/carSearch")
     public String changeCarByColor(@RequestParam("color") String color, ModelMap model) {
 
-       List<Car> carFindList =  carService.getCarByColo(color);
-        System.out.println("/search id: " + color+ "  car:   " + carFindList );
-        model.addAttribute("car", carFindList );
-        return "list-search";
+        List<Car> carFindList = carService.getCarByColo(color);
+        System.out.println("/search id: " + color + "  car:   " + carFindList);
+        model.addAttribute("car", carFindList);
 
+        return "list-search";
 
     }
 
