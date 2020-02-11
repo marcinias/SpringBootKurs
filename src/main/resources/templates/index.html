@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+<div class="container">
+
+    <p class="h4 mb-3 pt-5">Cars List</p>
+
+
+    <table class="table table-striped  ">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Year Production</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="filmList : ${list}">
+            <td th:text="${filmList.getId()}"></td>
+            <td th:text="${filmList.getTitle()}"></td>
+            <td th:text="${filmList.getYear()}"></td>
+        </tbody>
+    </table>
+
+
+    <h4>Add new film</h4>
+
+    <form th:action="@{/add}" th:object="${newFilm}" method="post">
+        <div class="form-row">
+
+            <div class="form-group col-md-1">
+                <label>ID:</label>
+                <input type="text" name="subject" th:field="*{id}" class="form-control" placeholder=" input id">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Title:</label>
+                <input type="text" th:field="*{title}" class="form-control" placeholder=" input title">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Year Production:</label>
+                <input type="text" name="subject" th:field="*{year}" class="form-control"
+                       placeholder=" input year ">
+            </div>
+
+            <div class="form-group col-md-2 mt-4 pt-2 ">
+                <input type="submit" value="Add new film" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+</body>
+</html>
