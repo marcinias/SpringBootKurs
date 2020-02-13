@@ -1,8 +1,6 @@
 package pl.sixfaces.home.homework_02;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -12,9 +10,6 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 
 @Profile("pro")
 public class CartPro {
@@ -36,12 +31,12 @@ public class CartPro {
     public void ranStart() {
         int vatPrice = (serviceCart.priceAll * vat / 100 + serviceCart.priceAll);
         double discountVal = (serviceCart.priceAll * vat / 100 + serviceCart.priceAll) * (discountPercent / 100);
-        double priceWithDiscount = vatPrice -  discountVal;
+        double priceWithDiscount = vatPrice - discountVal;
 
         System.out.println("VAT is: " + vat + " %");
         System.out.println("all price is: " + vatPrice + " z vat $");
 
-        System.out.println("discount: "  + Math.round(discountVal * 100.0) / 100.0 + "$");
+        System.out.println("discount: " + Math.round(discountVal * 100.0) / 100.0 + "$");
         System.out.println("discount percent: " + discountPercent + "%");
         System.out.println("all price with discount: " + priceWithDiscount + " z vat $");
 

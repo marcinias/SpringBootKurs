@@ -1,29 +1,25 @@
 package pl.sixfaces.home.homework_02;
 
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Data
-@NoArgsConstructor
+
 @Service
 public class ServiceCart {
 
-    Logger logger = LoggerFactory.getLogger(ServiceCart.class);
+
 
     List<Cart> cartList;
     protected int priceAll;
-    private int PriceMin = 50;
-    private int PriceMax = 300;
+    private int PriceMin = 30;
+    private int PriceMax = 50;
 
     public int generatePrice() {
         return PriceMin + (int) (Math.random() * ((PriceMax - PriceMin) + 1));
@@ -51,7 +47,15 @@ public class ServiceCart {
 
         }
 
+        //--------
+        String cos = "lcdTV";
 
+        //List<Cart> collect = cartList.stream().filter(x -> x.getPrice() == cos).collect(Collectors.toList());
+        // List<Cart> collect = cartList.stream().filter(x -> x.getItem().equals(cos)).collect(Collectors.toList());
+        List<Cart> collect = cartList.stream().filter(x -> x.getPrice() > 40).collect(Collectors.toList()); ;
+        System.out.println("filter: " + collect + "$");
+
+        //----------------
         System.out.println("all price is without vat: " + priceAll + "$");
 
 
