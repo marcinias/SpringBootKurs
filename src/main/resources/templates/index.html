@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+<div class="container">
+
+    <p class="h4 mb-3 pt-5">Cars List</p>
+
+
+    <nav class="navbar navbar-light bg-white">
+        <a class="navbar-brand"></a>
+        <form th:action="@{/carSearch}" th:object="${searchCar}" class="form-inline" method="get">
+            <input th:field="*{dateFrom}" class="form-control mr-sm-2" type="search" placeholder="Date from ...">
+            <input th:field="*{dateTo}" class="form-control mr-sm-2" type="search" placeholder="Date to..">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search...by Date production</button>
+        </form>
+    </nav>
+
+
+    <table class="table table-striped  ">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Mark</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Production data</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="cars_temp : ${cars}">
+            <td th:text="${cars_temp.getCarId() }"></td>
+            <td th:text="${cars_temp.getMark()}"></td>
+            <td th:text="${cars_temp.getModel()}"></td>
+            <td th:text="${cars_temp.getColor()}"></td>
+            <td th:text="${cars_temp.getDateProduction()}"></td>
+
+        </tbody>
+    </table>
+       <span th:if="${searchCar.getDateFrom() == null}">   </span>
+        <span th:unless="${searchCar.getDateFrom()== null}">
+               <p class="h5 mb-3 pt-5" th:text=" 'Cars Search Date Production from : ' + ${searchCar.getDateFrom()} + ' to : '+ ${searchCar.getDateTo()}  "></p>
+            <table>
+
+                <table class="table table-striped  ">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Mark</th>
+                        <th>Model</th>
+                        <th>Color</th>
+                        <th>Production data</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="cars_temp : ${findCars}">
+                        <td th:text="${cars_temp.getCarId() }"></td>
+                        <td th:text="${cars_temp.getMark()}"></td>
+                        <td th:text="${cars_temp.getModel()}"></td>
+                        <td th:text="${cars_temp.getColor()}"></td>
+                        <td th:text="${cars_temp.getDateProduction()}"></td>
+
+                    </tbody>
+                </table>
+
+          </span>
+
+</div>
+
+
+
+</body>
+</html>
