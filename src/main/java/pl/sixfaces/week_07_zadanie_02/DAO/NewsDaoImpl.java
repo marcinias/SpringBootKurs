@@ -42,7 +42,7 @@ public class NewsDaoImpl implements NewsDao {
     @Override
     public void update(Article article) {
 
-        String sql = "UPDATE news SET title=?, description=?, url=?,  WHERE id=?";
+        String sql = "UPDATE news SET title=?, description=?, url=? WHERE news_id=?";
 
                        jdbcTemplate.update(sql,
                              article.getTitle(),

@@ -51,9 +51,9 @@ public class Week07Zadanie02Application implements CommandLineRunner {
 
         String sqlTable = "CREATE TABLE news(" +
                 "news_id int(10)  NOT NULL AUTO_INCREMENT, " +
-                "title varchar (255)   NOT NULL ,  " +
-                "description TEXT  NOT NULL ," +
-                "url varchar (555)  NOT NULL , " +
+                "title varchar (255)  default NULL ,  " +
+                "description TEXT  default NULL ," +
+                "url varchar (555)  default NULL , " +
                 "PRIMARY KEY (news_id))";
         jdbcTemplate.execute(sqlTable);
 

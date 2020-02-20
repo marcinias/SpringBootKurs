@@ -149,4 +149,19 @@ public class Article {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "source=" + source +
+                ", author=" + author +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
+                ", urlToImage='" + urlToImage + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", content='" + content + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                ", id=" + id +
+                '}';
+    }
 }

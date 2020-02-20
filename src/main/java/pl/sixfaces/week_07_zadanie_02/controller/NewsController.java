@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.sixfaces.week_07_zadanie_02.DAO.NewsDao;
@@ -44,12 +45,12 @@ public class NewsController {
     public String updateFindId(@RequestParam("id") long id, Model model) {
 
         Article article = newsDao.findById(id);
-        model.addAttribute("findArticle", article);
+        model.addAttribute("article", article);
         return "update";
     }
 
     @PostMapping("/update")
-    public String update(@RequestParam("article") Article article, Model model) {
+    public String update(@ModelAttribute Article article) {
 
         newsDao.update(article);
         return "redirect:/";
