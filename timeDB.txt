@@ -1,0 +1,15 @@
+ Write data
+ ----------------
+ MongoDB localhost	elapsedTime: 396122400ns    ->  0.39s
+ MySQL Hibernate 	elapsedTime: 3477811100ns   ->  3.4s
+ MongoDB  Atlas cloud 	elapsedTime: 136639191900ns ->  136.6s
+ 
+ Read data
+-------------------
+ MongoDB localhost	elapsedTime: 14931900ns  ->  0,014s
+ MySQL Hibernate 	elapsedTime: 7736800ns   ->  0,0077s
+
+
+
+ csv - 1000 objects
+  
