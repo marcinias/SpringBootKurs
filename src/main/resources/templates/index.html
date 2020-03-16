@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+<div class="container">
+
+    <p class="h4 mb-3 pt-5">News List</p>
+
+
+    <table class="table table-striped  ">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Note</th>
+            <th>update/delete</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="note : ${notebookList}">
+            <td th:text="${note.getId()}"></td>
+            <td th:text="${note.getDateNote()  }"></td>
+            <td th:text="${note.getTitle()}"></td>
+            <td th:text="${note.getNote()}"></td>
+
+            <td>
+                <a class="btn btn-primary " th:href="@{update/form/(id=${note.getId()})}">Update</a>
+                <a class="btn btn-danger" th:href="@{delete/(id=${note.getId()})}">Remove</a>
+            </td>
+
+
+        </tbody>
+    </table>
+
+    <h4>Add new film</h4>
+
+    <form th:action="@{/add}" th:object="${newNote}" method="post">
+        <div class="form-row">
+
+            <div class="form-group col-md-3">
+                <label>Title:</label>
+                <input type="text" th:field="*{title}" class="form-control" placeholder=" input title note">
+            </div>
+
+            <div class="form-group col-md-7">
+                <label>Note</label>
+                <input type="text" name="subject" th:field="*{note}" class="form-control"
+                       placeholder=" input note">
+            </div>
+
+            <div class="form-group col-md-2 mt-4 pt-2 ">
+                <input type="submit" value="Add new note" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+</body>
+</html>
