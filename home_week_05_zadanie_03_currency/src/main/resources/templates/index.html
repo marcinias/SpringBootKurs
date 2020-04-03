@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container">
+    <p th:text="'1$ = '+${currency.getUsd()}+' PLN'"></p>
+
+
+    <h3> Guess the value of USD in PLN </h3>
+
+    <form th:action="@{/check}" th:object="${currency}" class="form-inline" method="get">
+        <input th:field="*{usdInput}" class="form-control mr-sm-2" p-3 type="search" placeholder=" enter dollar value ">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">enter dollar value</button>
+    </form>
+
+    <span th:if="${currency.getUsd() != currency.usdInput}" th:text="${currency.getStatus()}">  </span>
+    <span th:unless="${currency.getUsd() != currency.usdInput}"
+          th:text="'ok , you guessed it  '+ ${currency.counter}+ ' times'"> </span>
+
+
+</div>
+</body>
+</html>
