@@ -17,7 +17,7 @@ public class Week03Application {
         SpringApplication.run(Week03Application.class, args);
     }
 
-   @Bean
+    @Bean
     public Docket getDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
